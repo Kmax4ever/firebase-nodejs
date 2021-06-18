@@ -1,4 +1,3 @@
-const firebase = require('firebase/app')
 // const { Firestore } = require('@google-cloud/firestore');
 // var app = firebase.initializeApp({
 //     apiKey: "AIzaSyBtWHaJAxVwn-LR-Dug6z5QsyY1aXEM_hk",
@@ -11,10 +10,10 @@ const firebase = require('firebase/app')
 // });
 var fireBaseAdmin = require("firebase-admin");
 const { random } = require('lodash')
-var serviceAccount = require("./my-fist-fire-base-firebase-adminsdk-df2kk-129b6a0e83.json");
+var config = require("./config/key.json");
 
 fireBaseAdmin.initializeApp({
-    credential: fireBaseAdmin.credential.cert(serviceAccount),
+    credential: fireBaseAdmin.credential.cert(config.firebase),
     databaseURL: "https://my-fist-fire-base.firebaseio.com",
 });
 
@@ -23,7 +22,7 @@ const db = fireBaseAdmin.firestore();
 
 
 async function get() {
-    const snapshot = await db.collection('messages').get();
+    const snapshot = await db.collection('notices').get();
     snapshot.forEach((doc) => {
         console.log(doc.id, '=>', doc.data());
     });
@@ -56,7 +55,7 @@ function loadMessages() {
 //    var query = await db.collection('messages').where("type","==","image").get()
 
     var query = fireBaseAdmin.firestore()
-        .collection('messages')
+        .collection('notices')
         .orderBy('timestamp', 'desc')
         .limit(1);
 
@@ -72,7 +71,7 @@ function loadMessages() {
 async function sendMessage(message) {
     try {
         const idx = random(3)
-        await db.collection('messages').add({
+        await db.collection('notices').add({
 
             name: users[`${idx}`].name,
             text: users[`${idx}`].name,

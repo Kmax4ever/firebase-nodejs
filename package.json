@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kmax4ever/firebase-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kmax4ever/firebase-nodejs/issues"
+  },
+  "homepage": "https://github.com/Kmax4ever/firebase-nodejs#readme",
+  "dependencies": {
+    "firebase-admin": "^9.9.0",
+    "lodash": "^4.17.21"
+  }
+}
